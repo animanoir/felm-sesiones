@@ -1,6 +1,8 @@
 // batería fantasma | sesión 0.2 | fantasma en la máquina
 
 let kick1, kiick2, snare1, kick2
+let amplitud
+let fondoColor = 0
 
 // cargar todos los samples
 function preload() {
@@ -11,15 +13,30 @@ function preload() {
 }
 
 function setup() {
+  amplitud = new p5.Amplitude()
+
   createCanvas(windowWidth, windowHeight);
+  frameRate(60)
+  fill(255)
+  textSize(20)
+
+
+  fill(255)
+  noStroke()
+
 
 }
 
 function draw() {
-  background(0)
+  background(fondoColor)
+  text('kick1 = a\nkick2 = s\nsnare1 = b\nsnare2 = n', 10, 30)
+  let nivel = amplitud.getLevel()
+  let tamano = map(nivel, 0, 1, 0, 1300)
+  ellipse(width/2, height/2, tamano, tamano)
 }
 
 function keyPressed() {
+  fondoColor = color(Math.floor(random(255)),Math.floor(random(255)),Math.floor(random(255)))
   switch (key) {
     case 'a':
       kick1.play()
