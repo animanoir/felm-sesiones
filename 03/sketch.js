@@ -1,5 +1,6 @@
 console.info('sketch.js corriendo...')
 
+import * as THREE from './threejs/three.module.js';
 
 
 // Escenario
@@ -12,6 +13,15 @@ const resolucion = {
 
 const escena = new THREE.Scene();
 const camara = new THREE.PerspectiveCamera(75, resolucion.ancho / resolucion.alto, 0.1, 1000);
+
+// Animacion
+
+
+function animar() {
+  renderizador.render(scene,camera)
+  window.requestAnimationFrame(animar)
+}
+
 
 // Renderizador
 
