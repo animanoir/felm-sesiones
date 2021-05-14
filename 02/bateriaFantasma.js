@@ -1,7 +1,9 @@
 // batería fantasma | sesión 0.2 | fantasma en la máquina
 
-let kick1, kiick2, snare1, kick2
+let kick1, kick2, snare1, snare2
+
 let amplitud
+
 let fondoColor = 0
 
 // cargar todos los samples
@@ -12,31 +14,44 @@ function preload() {
   snare2 = loadSound('./jdilla/snare2.wav')
 }
 
+
+oscar.comer()
+
 function setup() {
   amplitud = new p5.Amplitude()
 
   createCanvas(windowWidth, windowHeight);
+  rectMode(CENTER)
   frameRate(60)
+
   fill(255)
+
   textSize(20)
-
-
-  fill(255)
-  noStroke()
+  // fill(255)
+  strokeWeight(10)
 
 
 }
 
 function draw() {
   background(fondoColor)
+
   text('kick1 = a\nkick2 = s\nsnare1 = b\nsnare2 = n', 10, 30)
+
   let nivel = amplitud.getLevel()
-  let tamano = map(nivel, 0, 1, 0, 1300)
-  ellipse(width/2, height/2, tamano, tamano)
+  let tamano = map(nivel, 0, 1, 100, 1300)
+  ellipse(width / 2, height / 2, tamano, tamano)
+  rect((width / 2) + 200, height / 2, tamano, tamano)
+
+}
+
+function mouseClicked(){
+  remove()
 }
 
 function keyPressed() {
-  fondoColor = color(Math.floor(random(255)),Math.floor(random(255)),Math.floor(random(255)))
+  console.log(key)
+  fondoColor = color(Math.floor(random(255)), Math.floor(random(255)), Math.floor(random(255)))
   switch (key) {
     case 'a':
       kick1.play()
